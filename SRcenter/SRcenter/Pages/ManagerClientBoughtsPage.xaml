@@ -1,0 +1,192 @@
+﻿<Page x:Class="SRcenter.Pages.ManagerClientBoughtsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SRcenter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="ManagerClientBoughtsPage">
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.55"></SolidColorBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0">
+            <Border.Background>
+                <SolidColorBrush Color="White" Opacity="0.50"></SolidColorBrush>
+            </Border.Background>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" Margin="120,0,0,0">
+                    <TextBlock Text="Имя пользователя: " Style="{StaticResource AccountText}"></TextBlock>
+                    <TextBlock x:Name="TbName"  Text="{Binding C_name}" TextDecorations="Underline" Style="{StaticResource AccountText}" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="120,15,0,0">
+                    <TextBlock Text="Номер телефона: " Style="{StaticResource AccountText}"></TextBlock>
+                    <TextBlock x:Name="TbPhone" Text="{Binding C_phone}" TextDecorations="Underline" Style="{StaticResource AccountText}" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="120,15,0,0">
+                    <TextBlock Text="Эл.почта: " Style="{StaticResource AccountText}"></TextBlock>
+                    <TextBlock x:Name="TbEmail"  Text="{Binding C_email}" TextDecorations="Underline" Style="{StaticResource AccountText}" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="120,15,0,10">
+                    <TextBlock Text="День рождения: " Style="{StaticResource AccountText}"></TextBlock>
+                    <TextBlock x:Name="TbBirth"  Text="{Binding C_birthday, StringFormat='{}{0:dd.MM.yyy}'}" TextDecorations="Underline" Style="{StaticResource AccountText}" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.4  *"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.4*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0">
+                <StackPanel.Background>
+                    <SolidColorBrush Color="White" Opacity="0.50"></SolidColorBrush>
+                </StackPanel.Background>
+            </StackPanel>
+            <StackPanel Grid.RowSpan="3" Grid.Column="1">
+                <StackPanel.Background>
+                    <SolidColorBrush Color="White" Opacity="0.50"></SolidColorBrush>
+                </StackPanel.Background>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="0">
+                <StackPanel.Background>
+                    <SolidColorBrush Color="White" Opacity="0.50"></SolidColorBrush>
+                </StackPanel.Background>
+            </StackPanel>
+            <Border Grid.Row="1" Grid.Column="0"  Grid.RowSpan="1" BorderBrush="Black" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.RowSpan="3" Grid.Column="0">
+                        <StackPanel.Background>
+                            <SolidColorBrush Color="White" Opacity="0.50"></SolidColorBrush>
+                        </StackPanel.Background>
+                    </StackPanel>
+                    <TextBlock Grid.Row="0" Text="Услуги" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">
+                        <TextBlock.LayoutTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                                <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                            </TransformGroup>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                    <TextBlock Grid.Row="1" Text="Абонементы" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">
+                        <TextBlock.LayoutTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                                <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                            </TransformGroup>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                    <TextBlock Grid.Row="2" Text="Занятия" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">
+                        <TextBlock.LayoutTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="90" />
+                                <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                            </TransformGroup>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                    <ListView x:Name="ListService" Grid.Row="0" Grid.Column="1" Padding="10,0" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                        <ListView.Background>
+                            <SolidColorBrush Opacity="0.40"></SolidColorBrush>
+                        </ListView.Background>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Height="180" Width="160" Background="White" CornerRadius="8" Padding="0,10,0,0">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Source="{Binding Service.GetPhoto}" Grid.Row="0" Height="95"></Image>
+                                        <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" Margin="10,5,0,0">
+                                            <TextBlock Text="{Binding Service.S_name}" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock Text="{Binding DateVisit, StringFormat={}{0:dd.MM.yyyy}}" TextWrapping="Wrap"></TextBlock>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <ListView x:Name="ListSeasonTicket" Grid.Row="1" Grid.Column="1" Padding="10,0" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                        <ListView.Background>
+                            <SolidColorBrush Opacity="0.40"></SolidColorBrush>
+                        </ListView.Background>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Height="180" Width="160" Background="White" CornerRadius="8" Padding="0,10,0,0">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Source="{Binding SeasonTicket.GetPhoto}" Grid.Row="0" Width="160"></Image>
+                                        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10,5,0,0">
+                                            <TextBlock Text="{Binding SeasonTicket.ST_name}" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock Text="{Binding DateStart, StringFormat={}с {0:dd.MM.yyyy}}" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock Text="{Binding DateEnd, StringFormat={}до {0:dd.MM.yyyy}}" TextWrapping="Wrap"></TextBlock>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <ListView x:Name="ListTimetable" Grid.Row="2" Grid.Column="1" Padding="10,0" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                        <ListView.Background>
+                            <SolidColorBrush Opacity="0.40"></SolidColorBrush>
+                        </ListView.Background>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Height="80" Width="auto" Background="White" CornerRadius="8" Padding="10,10,10,0">
+                                    <Grid>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding User.U_name, StringFormat={}Тренер: {0}}" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock Text="{Binding Date, StringFormat={}Время посещения: {0:dd.MM.yyyy}}" TextWrapping="Wrap"></TextBlock>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

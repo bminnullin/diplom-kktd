@@ -1,0 +1,63 @@
+﻿<Page x:Class="SRcenter.Pages.RegistrationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SRcenter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="RegistrationPage">
+
+    <Page.Background>
+        <SolidColorBrush Color="White" Opacity="0.55"/>
+    </Page.Background>
+    <Grid>
+        <Grid VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Width="400" Height="350" CornerRadius="3" BorderThickness="1" BorderBrush="Black" VerticalAlignment="Bottom">
+                <Grid >
+                    <Grid.Background>
+                        <SolidColorBrush Color="White" Opacity="0.55"/>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TblockId" Text="" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Visibility="Hidden"></TextBlock>
+                    <TextBox Margin="0,5" Height="35" x:Name="TboxId" Grid.Column="1" Grid.Row="0" Width="150" Text="{Binding ClientID}" Visibility="Hidden" Style="{StaticResource AuthTextBox}"/>
+                    <TextBlock Text="Имя" Grid.Row="0" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                    <TextBox x:Name="TbName" Grid.Row="0" Grid.Column="1" Height="35" Width="155" VerticalAlignment="Center" Text="{Binding C_name}" Style="{StaticResource AuthTextBox}"/>
+                    <TextBlock Text="Телефон" Grid.Row="1" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                    <TextBox x:Name="TbPhone" Grid.Row="1" Grid.Column="1" Height="35" Width="155" VerticalAlignment="Center" Text="{Binding C_phone}" Style="{StaticResource AuthTextBox}"/>
+                    <TextBlock Text="E-mail" Grid.Row="2" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                    <TextBox x:Name="TbEmail" Grid.Row="2" Grid.Column="1" Height="35" Width="155" VerticalAlignment="Center" Text="{Binding C_email}" Style="{StaticResource AuthTextBox}"/>
+                    <TextBlock Text="Дата рождения" Grid.Row="3" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                    <TextBox x:Name="TbBirthday" Grid.Row="3"  Grid.Column="1" Height="35" Width="155" VerticalAlignment="Center" Text="{Binding C_birthday, StringFormat='{}{0:dd.MM.yyyy}'}" Style="{StaticResource AuthTextBox}"/>
+                    <TextBlock Text="Логин" Grid.Row="4" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                    <TextBox x:Name="TbLogin" Grid.Row="4" Grid.Column="1" Height="35" Width="155" VerticalAlignment="Center" Text="{Binding C_login}" Style="{StaticResource AuthTextBox}"/>
+                    <TextBlock Text="Пароль" Grid.Row="5" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,15"/>
+                    <TextBox x:Name="TbPass" Grid.Row="5" Grid.Column="1" Height="35" Width="155" VerticalAlignment="Top" Text="{Binding C_password}" Style="{StaticResource AuthTextBox}"/>
+                    <PasswordBox x:Name="PbPass" PasswordChar="*" Grid.Row="5" Grid.Column="1" Height="35" Width="155" VerticalAlignment="Bottom" PasswordChanged="TbPass_PasswordChanged" Margin="0,0,0,20" Style="{StaticResource  AuthPassBox}"></PasswordBox>
+                    <TextBox Name="PasswordUnmask" Visibility="Hidden" Grid.Row="5" Grid.Column="1" Height="35" Width="155" VerticalAlignment="Bottom" Margin="0,0,0,20" TextAlignment="Center"></TextBox>
+                    <TextBlock x:Name="ShowPassword" Text="Показать пароль" HorizontalAlignment="Center" Margin="0,0,0,2"  FontSize="16" Grid.Row="5" Grid.Column="1"
+                           VerticalAlignment="Bottom" PreviewMouseDown="ShowPassword_PreviewMouseDown"
+                           PreviewMouseUp="ShowPassword_PreviewMouseUp" MouseLeave="ShowPassword_MouseLeave"/>
+                </Grid>
+            </Border>
+            <StackPanel Grid.Row="1" VerticalAlignment="Top"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button x:Name="Regbtn" Content="Отправить данные" Width="160" Height="40" FontSize="16" Foreground="Black" Background="White" Click="Regbtn_Click" Margin="10,0" Style="{StaticResource MainButton}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

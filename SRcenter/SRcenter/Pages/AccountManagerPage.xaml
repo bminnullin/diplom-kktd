@@ -1,0 +1,52 @@
+﻿<Page x:Class="SRcenter.Pages.AccountManagerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SRcenter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="AccountManagerPage">
+    <Page.Background>
+        <SolidColorBrush Color="White" Opacity="0.55"/>
+    </Page.Background>
+    <Grid>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="3" Width="500" Height="400" BorderThickness="1" BorderBrush="Black">
+            <Grid>
+                <Grid.Background>
+                    <SolidColorBrush Color="White" Opacity="0.55"/>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+            <Image x:Name="Uimg" Source="{Binding AuthInfo.GetPhoto}" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Width="100" Height="120"></Image>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"  Margin="15 0 0 0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Имя пользователя: " Style="{StaticResource AccountText}"></TextBlock>
+                        <TextBlock x:Name="TbName"  Text="{Binding U_name}" TextDecorations="Underline" Style="{StaticResource AccountText}" Margin="10,0,0,0"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Номер телефона: " Style="{StaticResource AccountText}"></TextBlock>
+                        <TextBlock x:Name="TbPhone" Text="{Binding U_phone}" TextDecorations="Underline" Style="{StaticResource AccountText}" Margin="10,0,0,0"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Эл.почта: " Style="{StaticResource AccountText}"></TextBlock>
+                        <TextBlock x:Name="TbEmail"  Text="{Binding U_email}" TextDecorations="Underline" Style="{StaticResource AccountText}" Margin="10,0,0,0"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="День рождения: " Style="{StaticResource AccountText}"></TextBlock>
+                        <TextBlock x:Name="TbBirth"  Text="{Binding U_birthday, StringFormat='{}{0:dd.MM.yyy}'}" TextDecorations="Underline" Style="{StaticResource AccountText}" Margin="10,0,0,0"></TextBlock>
+                    </StackPanel><StackPanel Orientation="Vertical">
+                        <TextBlock Text="IP пользователя: " Style="{StaticResource AccountText}"></TextBlock>
+                        <TextBlock x:Name="TbIP"  Text="{Binding U_ip, StringFormat='{}{0:dd.MM.yyy}'}" TextDecorations="Underline" Style="{StaticResource AccountText}" Margin="10,0,0,0"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

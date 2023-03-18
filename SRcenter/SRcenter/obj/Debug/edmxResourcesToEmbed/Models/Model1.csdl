@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SRcenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BoughtService">
+    <Key>
+      <PropertyRef Name="BoughtServiceID" />
+    </Key>
+    <Property Name="BoughtServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="ClientID" Type="Int32" Nullable="false" />
+    <Property Name="DateVisit" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_BoughtService_Client" FromRole="BoughtService" ToRole="Client" />
+    <NavigationProperty Name="Service" Relationship="Self.FK_BoughtService_Service" FromRole="BoughtService" ToRole="Service" />
+    <NavigationProperty Name="User" Relationship="Self.FK_BoughtService_User" FromRole="BoughtService" ToRole="User" />
+  </EntityType>
+  <EntityType Name="BoughtST">
+    <Key>
+      <PropertyRef Name="BoughtSTID" />
+    </Key>
+    <Property Name="BoughtSTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonTicketID" Type="Int32" Nullable="false" />
+    <Property Name="DateStart" Type="DateTime" Precision="0" />
+    <Property Name="DateEnd" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_BoughtST_Client" FromRole="BoughtST" ToRole="Client" />
+    <NavigationProperty Name="SeasonTicket" Relationship="Self.FK_BoughtST_SeasonTicket" FromRole="BoughtST" ToRole="SeasonTicket" />
+    <NavigationProperty Name="Timetables" Relationship="Self.FK_Timetable_BoughtST1" FromRole="BoughtST" ToRole="Timetable" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="C_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C_birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="C_login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleID" Type="Int32" />
+    <NavigationProperty Name="BoughtServices" Relationship="Self.FK_BoughtService_Client" FromRole="Client" ToRole="BoughtService" />
+    <NavigationProperty Name="BoughtSTs" Relationship="Self.FK_BoughtST_Client" FromRole="Client" ToRole="BoughtST" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Client_Role" FromRole="Client" ToRole="Role" />
+    <NavigationProperty Name="OrderServices" Relationship="Self.FK_OrderService_Client" FromRole="Client" ToRole="OrderService" />
+    <NavigationProperty Name="OrderSTs" Relationship="Self.FK_OrderST_Client" FromRole="Client" ToRole="OrderST" />
+    <NavigationProperty Name="Timetables" Relationship="Self.FK_Timetable_Client" FromRole="Client" ToRole="Timetable" />
+  </EntityType>
+  <EntityType Name="OrderService">
+    <Key>
+      <PropertyRef Name="OrderServiceID" />
+    </Key>
+    <Property Name="OrderServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientID" Type="Int32" />
+    <Property Name="ServiceID" Type="Int32" />
+    <Property Name="DateVisit" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_OrderService_Client" FromRole="OrderService" ToRole="Client" />
+    <NavigationProperty Name="Service" Relationship="Self.FK_OrderService_Service" FromRole="OrderService" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="OrderST">
+    <Key>
+      <PropertyRef Name="OrderSTID" />
+    </Key>
+    <Property Name="OrderSTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientID" Type="Int32" />
+    <Property Name="SeasonTicketID" Type="Int32" />
+    <Property Name="DateOrder" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_OrderST_Client" FromRole="OrderST" ToRole="Client" />
+    <NavigationProperty Name="SeasonTicket" Relationship="Self.FK_OrderST_SeasonTicket" FromRole="OrderST" ToRole="SeasonTicket" />
+  </EntityType>
+  <EntityType Name="Raspisanie">
+    <Key>
+      <PropertyRef Name="WeekID" />
+      <PropertyRef Name="Time" />
+      <PropertyRef Name="SeasonTicketID" />
+    </Key>
+    <Property Name="WeekID" Type="Byte" Nullable="false" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="SeasonTicketID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SeasonTicket" Relationship="Self.FK_Raspisanie_SeasonTicket" FromRole="Raspisanie" ToRole="SeasonTicket" />
+    <NavigationProperty Name="Week" Relationship="Self.FK_Raspisanie_Week" FromRole="Raspisanie" ToRole="Week" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="R_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK_Client_Role" FromRole="Role" ToRole="Client" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="SeasonTickets" Relationship="Self.ST_Role" FromRole="Role" ToRole="SeasonTicket" />
+  </EntityType>
+  <EntityType Name="SeasonTicket">
+    <Key>
+      <PropertyRef Name="SeasonTicketID" />
+    </Key>
+    <Property Name="SeasonTicketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ST_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ST_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceID" Type="Int32" />
+    <Property Name="ST_period" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ST_price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ST_image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BoughtSTs" Relationship="Self.FK_BoughtST_SeasonTicket" FromRole="SeasonTicket" ToRole="BoughtST" />
+    <NavigationProperty Name="OrderSTs" Relationship="Self.FK_OrderST_SeasonTicket" FromRole="SeasonTicket" ToRole="OrderST" />
+    <NavigationProperty Name="Raspisanies" Relationship="Self.FK_Raspisanie_SeasonTicket" FromRole="SeasonTicket" ToRole="Raspisanie" />
+    <NavigationProperty Name="Service" Relationship="Self.FK_SeasonTicket_Service" FromRole="SeasonTicket" ToRole="Service" />
+    <NavigationProperty Name="Roles" Relationship="Self.ST_Role" FromRole="SeasonTicket" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="S_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="S_description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="S_period" Type="Time" Precision="7" />
+    <Property Name="S_price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="S_image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BoughtServices" Relationship="Self.FK_BoughtService_Service" FromRole="Service" ToRole="BoughtService" />
+    <NavigationProperty Name="OrderServices" Relationship="Self.FK_OrderService_Service" FromRole="Service" ToRole="OrderService" />
+    <NavigationProperty Name="SeasonTickets" Relationship="Self.FK_SeasonTicket_Service" FromRole="Service" ToRole="SeasonTicket" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Timetable">
+    <Key>
+      <PropertyRef Name="TimetableID" />
+    </Key>
+    <Property Name="TimetableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="ClientID" Type="Int32" />
+    <Property Name="BoughtSTID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="BoughtST" Relationship="Self.FK_Timetable_BoughtST1" FromRole="Timetable" ToRole="BoughtST" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Timetable_Client" FromRole="Timetable" ToRole="Client" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Timetable_User" FromRole="Timetable" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="U_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="U_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="U_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="U_bitrhday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="U_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="U_login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="U_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="U_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleID" Type="Int32" />
+    <NavigationProperty Name="BoughtServices" Relationship="Self.FK_BoughtService_User" FromRole="User" ToRole="BoughtService" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Timetables" Relationship="Self.FK_Timetable_User" FromRole="User" ToRole="Timetable" />
+  </EntityType>
+  <EntityType Name="Week">
+    <Key>
+      <PropertyRef Name="WeekID" />
+    </Key>
+    <Property Name="WeekID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="W_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Raspisanies" Relationship="Self.FK_Raspisanie_Week" FromRole="Week" ToRole="Raspisanie" />
+  </EntityType>
+  <Association Name="FK_BoughtService_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BoughtService" Type="Self.BoughtService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="BoughtService">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoughtService_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BoughtService" Type="Self.BoughtService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceID" />
+      </Principal>
+      <Dependent Role="BoughtService">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoughtService_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="BoughtService" Type="Self.BoughtService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="BoughtService">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoughtST_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BoughtST" Type="Self.BoughtST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="BoughtST">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoughtST_SeasonTicket">
+    <End Role="SeasonTicket" Type="Self.SeasonTicket" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BoughtST" Type="Self.BoughtST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SeasonTicket">
+        <PropertyRef Name="SeasonTicketID" />
+      </Principal>
+      <Dependent Role="BoughtST">
+        <PropertyRef Name="SeasonTicketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_BoughtST1">
+    <End Role="BoughtST" Type="Self.BoughtST" Multiplicity="1" />
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoughtST">
+        <PropertyRef Name="BoughtSTID" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="BoughtSTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Client_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderService_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="OrderService" Type="Self.OrderService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="OrderService">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderST_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="OrderST" Type="Self.OrderST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="OrderST">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderService_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+    <End Role="OrderService" Type="Self.OrderService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceID" />
+      </Principal>
+      <Dependent Role="OrderService">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderST_SeasonTicket">
+    <End Role="SeasonTicket" Type="Self.SeasonTicket" Multiplicity="0..1" />
+    <End Role="OrderST" Type="Self.OrderST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SeasonTicket">
+        <PropertyRef Name="SeasonTicketID" />
+      </Principal>
+      <Dependent Role="OrderST">
+        <PropertyRef Name="SeasonTicketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Raspisanie_SeasonTicket">
+    <End Role="SeasonTicket" Type="Self.SeasonTicket" Multiplicity="1" />
+    <End Role="Raspisanie" Type="Self.Raspisanie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SeasonTicket">
+        <PropertyRef Name="SeasonTicketID" />
+      </Principal>
+      <Dependent Role="Raspisanie">
+        <PropertyRef Name="SeasonTicketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Raspisanie_Week">
+    <End Role="Week" Type="Self.Week" Multiplicity="1" />
+    <End Role="Raspisanie" Type="Self.Raspisanie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Week">
+        <PropertyRef Name="WeekID" />
+      </Principal>
+      <Dependent Role="Raspisanie">
+        <PropertyRef Name="WeekID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SeasonTicket_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+    <End Role="SeasonTicket" Type="Self.SeasonTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceID" />
+      </Principal>
+      <Dependent Role="SeasonTicket">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Timetable_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Timetable">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ST_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="*" />
+    <End Role="SeasonTicket" Type="Self.SeasonTicket" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="SRcenterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BoughtServices" EntityType="Self.BoughtService" />
+    <EntitySet Name="BoughtSTs" EntityType="Self.BoughtST" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="OrderServices" EntityType="Self.OrderService" />
+    <EntitySet Name="OrderSTs" EntityType="Self.OrderST" />
+    <EntitySet Name="Raspisanies" EntityType="Self.Raspisanie" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="SeasonTickets" EntityType="Self.SeasonTicket" />
+    <EntitySet Name="Services" EntityType="Self.Service" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Timetables" EntityType="Self.Timetable" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Weeks" EntityType="Self.Week" />
+    <AssociationSet Name="FK_BoughtService_Client" Association="Self.FK_BoughtService_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="BoughtService" EntitySet="BoughtServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoughtService_Service" Association="Self.FK_BoughtService_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="BoughtService" EntitySet="BoughtServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoughtService_User" Association="Self.FK_BoughtService_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="BoughtService" EntitySet="BoughtServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoughtST_Client" Association="Self.FK_BoughtST_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="BoughtST" EntitySet="BoughtSTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoughtST_SeasonTicket" Association="Self.FK_BoughtST_SeasonTicket">
+      <End Role="SeasonTicket" EntitySet="SeasonTickets" />
+      <End Role="BoughtST" EntitySet="BoughtSTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_BoughtST1" Association="Self.FK_Timetable_BoughtST1">
+      <End Role="BoughtST" EntitySet="BoughtSTs" />
+      <End Role="Timetable" EntitySet="Timetables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Client_Role" Association="Self.FK_Client_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderService_Client" Association="Self.FK_OrderService_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="OrderService" EntitySet="OrderServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderST_Client" Association="Self.FK_OrderST_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="OrderST" EntitySet="OrderSTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_Client" Association="Self.FK_Timetable_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Timetable" EntitySet="Timetables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderService_Service" Association="Self.FK_OrderService_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="OrderService" EntitySet="OrderServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderST_SeasonTicket" Association="Self.FK_OrderST_SeasonTicket">
+      <End Role="SeasonTicket" EntitySet="SeasonTickets" />
+      <End Role="OrderST" EntitySet="OrderSTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Raspisanie_SeasonTicket" Association="Self.FK_Raspisanie_SeasonTicket">
+      <End Role="SeasonTicket" EntitySet="SeasonTickets" />
+      <End Role="Raspisanie" EntitySet="Raspisanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Raspisanie_Week" Association="Self.FK_Raspisanie_Week">
+      <End Role="Week" EntitySet="Weeks" />
+      <End Role="Raspisanie" EntitySet="Raspisanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SeasonTicket_Service" Association="Self.FK_SeasonTicket_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="SeasonTicket" EntitySet="SeasonTickets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Timetable_User" Association="Self.FK_Timetable_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Timetable" EntitySet="Timetables" />
+    </AssociationSet>
+    <AssociationSet Name="ST_Role" Association="Self.ST_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="SeasonTicket" EntitySet="SeasonTickets" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

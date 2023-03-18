@@ -1,0 +1,73 @@
+﻿<Page x:Class="SRcenter.Pages.AddBoughtServicePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SRcenter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="AddBoughtServicePage">
+    <Page.Background>
+        <SolidColorBrush Color="White" Opacity="0.55"/>
+    </Page.Background>
+    <Grid>
+        <Grid VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel  Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock x:Name="TextBlockOrderNumber" FontSize="25"></TextBlock>
+            </StackPanel>
+            <Border Width="800" Grid.Row="1" Height="450" CornerRadius="3" BorderThickness="1" BorderBrush="Black" VerticalAlignment="Center">
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="White" Opacity="0.55"></SolidColorBrush>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TblockID" Text="" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+                    <TextBox x:Name="TboxID" Text="" Grid.Column="1" Width="150" Grid.Row="0" VerticalAlignment="Center" Visibility="Hidden"></TextBox>
+                    <StackPanel Margin="0,15,0,0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Vertical">
+                        <TextBlock FontSize="20" Text="ID | Имя клиента" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock FontSize="24" x:Name="TbClientid"></TextBlock>
+                            <TextBlock FontSize="24" x:Name="TbCname"></TextBlock>
+                        </StackPanel>
+                        <TextBlock FontSize="24" x:Name="TbCphone" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 0 0"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+                        <TextBlock FontSize="20" Text="Название услуги" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock FontSize="24" x:Name="TbSname" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical">
+                        <TextBlock FontSize="20" Text="Предварительный день визита" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock FontSize="24" x:Name="TbVisit" Text="{Binding TbVisit, StringFormat={}{0:dd.MM.yyyy}}" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+                    </StackPanel>
+                    <Line Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" X1="350" Y1="0" X2="350" Y2="600" Stroke="Black" StrokeThickness="1"></Line>
+                    <Line Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" X1="0" Y1="0" X2="800" Y2="0" Stroke="Black" StrokeThickness="1"></Line>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+                        <TextBlock FontSize="20" Text="Название услуги" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock x:Name="TblockSname" FontSize="24" Text="{Binding S_name}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+                        <TextBlock FontSize="20" Text="День визита" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+                        <Calendar x:Name="TboxDateVisit" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding DateVisit, StringFormat={}{0:MM.dd.yyyy}}" Margin="0 5 0 5">
+                        </Calendar>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <StackPanel Grid.Row="2" VerticalAlignment="Top"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button x:Name="AddBought" Content="Оформить покупку" Width="160" Height="40" FontSize="16" Click="AddBought_Click" Margin="10,0" Style="{StaticResource AuthPage}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

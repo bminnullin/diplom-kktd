@@ -1,0 +1,9 @@
+public static SRcenterEntities _context;
+        public static SRcenterEntities GetContext()
+        {
+            if (_context == null)
+            {
+                _context = new SRcenterEntities();
+            }
+            return _context;
+        }

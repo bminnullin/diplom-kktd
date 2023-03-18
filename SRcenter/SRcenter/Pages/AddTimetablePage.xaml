@@ -1,0 +1,49 @@
+﻿<Page x:Class="SRcenter.Pages.AddTimetablePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SRcenter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="AddTimetablePage" >
+    <Page.Background>
+        <SolidColorBrush Color="White" Opacity="0.55"/>
+    </Page.Background>
+    <Grid>
+        <Border  HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="3" Width="650" Height="400" BorderThickness="1" BorderBrush="Black">
+            <Grid>
+                <Grid.Background>
+                    <SolidColorBrush Color="White" Opacity="0.55"/>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.RowSpan="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock Text="Выберите абонемент" FontSize="24" Margin="0 30 0 5"></TextBlock>
+                    <TextBlock Text="Выберите тренера" FontSize="24" Margin="0 0 0 10"></TextBlock>
+                    <TextBlock Text="Выберите время" FontSize="24"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.RowSpan="2" VerticalAlignment="Bottom" Grid.Column="0" HorizontalAlignment="Center" Margin="30 0 0 0">
+                    <TextBlock x:Name="TbKick" Text="Тренировки по Кикбоксу проходят во Вторник и Четверг" TextWrapping="Wrap" FontSize="18"/>
+                    <TextBlock x:Name="TbBox" Text="Тренировки по Боксу проходят в Среду и Пятницу" TextWrapping="Wrap" FontSize="18"/>
+                </StackPanel>
+                <StackPanel Grid.RowSpan="2" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ComboBox x:Name="CmbST" Width="160" FontSize="16" Margin="0 30 0 5" SelectedItem="{Binding BoughtST}" DisplayMemberPath="SeasonTicket.ST_name" SelectionChanged="CmbST_SelectionChanged"/>
+                    <ComboBox x:Name="CmbCouch" Width="160" FontSize="16" Margin="0 0 0 15"/>
+                    <Calendar x:Name="TboxDateVisit" SelectedDate="{Binding Date, StringFormat={}{0:MM.dd.yyyy}}"></Calendar>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="BtnOk" Style="{StaticResource  AuthPage}" Width="120" Height="35" Content="Ок" Margin="0 0 20 0" Click="BtnOk_Click"></Button>
+                    <Button x:Name="BtnCancel" Style="{StaticResource  AuthPage}" Width="120" Height="35" Content="Отмена" Click="BtnCancel_Click" ></Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

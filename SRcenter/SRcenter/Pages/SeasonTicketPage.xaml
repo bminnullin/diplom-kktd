@@ -1,0 +1,78 @@
+﻿<Page x:Class="SRcenter.Pages.SeasonTicketPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SRcenter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SeasonTicketPage" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.55"></SolidColorBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,5,0,0">
+            <Button x:Name="PriceVozST" Content="Цена по возрастанию" FontSize="16" Width="180" Height="23" Foreground="Black" Style="{StaticResource PriceButton}" Click="PriceVozST_Click">
+            </Button>
+            <Button x:Name="PriceUbST" Content="Цена по убыванию" FontSize="16" Width="160" Height="23" Style="{StaticResource PriceButton}" Visibility="Collapsed" Click="PriceUbST_Click"></Button>
+        </StackPanel>
+        <ListView Grid.Row="1"  x:Name="ListSeasonTicket" Padding="10,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.Background>
+                <SolidColorBrush Opacity="0.55"></SolidColorBrush>
+            </ListView.Background>
+            <ListView.BorderThickness>
+                <Thickness></Thickness>
+            </ListView.BorderThickness>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Margin" Value="35"/>
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border  BorderBrush="#FF2B8FE2" BorderThickness="1" Padding="10" CornerRadius="3">
+                        <Border.Background>
+                            <SolidColorBrush Color="White" Opacity="0.50"></SolidColorBrush>
+                        </Border.Background>
+                        <Grid Height="auto" MinHeight="700" Width="360" VerticalAlignment="Top">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10">
+                                <Image Width="350" Source="{Binding GetPhoto}"></Image>
+                            </StackPanel>
+                            <TextBlock Grid.Row="1" VerticalAlignment="Top"  FontSize="20" Margin="0,15" TextWrapping="Wrap"  x:Name="STname" Text="{Binding ST_name}"></TextBlock>
+                            <TextBlock Grid.Row="2" FontSize="16" TextWrapping="Wrap"  x:Name="STdescription" Text="{Binding ST_description}"></TextBlock>
+                            <TextBlock Grid.Row="3" FontSize="18"  x:Name="STdopService" Text="{Binding Service.S_name}"></TextBlock>
+                            <StackPanel  Grid.Row="4"  Margin="0,15,0,0" Orientation="Horizontal">
+                                <TextBlock FontSize="18" Text="Длительность улуги:  "></TextBlock>
+                                <TextBlock FontSize="20" x:Name="STperiod" Text="{Binding ST_period, StringFormat={}{0} дней}"></TextBlock>
+                            </StackPanel>
+                            <TextBlock Grid.Row="5" FontSize="24" Margin="0,15,0,0"  x:Name="STprice" Text="{Binding ST_price, StringFormat={}{0} руб.}"></TextBlock>
+                            <Button VerticalAlignment="Bottom" x:Name="Zayavka" Click="Zayavka_Click" Grid.Row="6" Content="Оставить заявку" HorizontalAlignment="Center" 
+                                    FontSize="18" Margin="0,60,0,15" Width="170" Height="45" Style="{StaticResource  ServiceBtn}" Foreground="White"></Button>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

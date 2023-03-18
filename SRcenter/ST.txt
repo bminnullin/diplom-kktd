@@ -1,0 +1,35 @@
+
+public string GetPhoto
+        {
+            get
+            {
+                if (ST_image is null)
+                    return null;
+                return Directory.GetCurrentDirectory() + @"\Images\" + ST_image.Trim();
+            }
+        }
+
+
+
+
+
+public string GetPhoto
+        {
+            get
+            {
+                if (S_image is null)
+                    return null;
+                return Directory.GetCurrentDirectory() + @"\Images\" + S_image.Trim();
+            }
+        }
+
+
+public string GetPhoto
+        {
+            get
+            {
+                if (U_photo is null)
+                    return null;
+                return Directory.GetCurrentDirectory() + @"\Images\" + U_photo.Trim();
+            }
+        }

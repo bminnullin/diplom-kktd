@@ -1,0 +1,51 @@
+﻿<Page x:Class="SRcenter.Pages.AddOrderServicePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SRcenter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="AddOrderServicePage">
+    <Page.Background>
+        <SolidColorBrush Color="White" Opacity="0.55"/>
+    </Page.Background>
+    <Grid>
+        <Grid VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel  Grid.Row="0" HorizontalAlignment="Center">
+                <TextBlock x:Name="TextBlockOrderNumber" FontSize="25"></TextBlock>
+            </StackPanel>
+            <Border Width="800" Grid.Row="1" Height="400" CornerRadius="3" BorderThickness="1" BorderBrush="Black" VerticalAlignment="Center">
+                <Grid>
+                    <Grid.Background>
+                        <SolidColorBrush Color="White" Opacity="0.55"></SolidColorBrush>
+                    </Grid.Background> 
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TblockID" Text="" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+                    <TextBox x:Name="TboxID" Text="" Grid.Column="1" Width="150" Grid.Row="0" VerticalAlignment="Center" Visibility="Hidden"></TextBox>
+                    <TextBlock Margin="50,0,0,0"  Grid.Row="0" Grid.Column="0" FontSize="24" Text="Название услуги —" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Margin="50,0,0,0"  Grid.Row="1" Grid.Column="0" FontSize="24" Text="День вашего визита —" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock x:Name="TblockSname" Grid.Row="0" Grid.Column="1" FontSize="24" Text="{Binding S_name}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                    <Calendar x:Name="TboxDateVisit" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding DateVisit, StringFormat={}{0:MM.dd.yyyy}}"></Calendar>
+                    <TextBlock x:Name="TblockPrice" Grid.Row="3" Grid.Column="1" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                </Grid>
+            </Border>
+            <StackPanel Grid.Row="2" VerticalAlignment="Top"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button x:Name="AddOrder" Content="Отправить заявку" Width="160" Height="40" FontSize="16" Click="AddOrder_Click" Margin="10,0" Style="{StaticResource AuthPage}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
